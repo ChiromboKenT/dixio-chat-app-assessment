@@ -1,0 +1,24 @@
+FROM node:16-alpine as development
+
+#Set up working DIR
+WORKDIR /app
+
+# Copy package-lock.json & package.json from host to inside container working directory
+COPY package*.json .
+
+# Install deps inside container
+ARG NODE_ENV
+RUN if [ "${NODE_ENV}" = "development" ]; \
+        then npm install --also=dev; \
+        else npm install --only=production; \
+        fi
+
+#  Bundle App Sources
+COPY . .
+
+EXPOSE 3000
+CMD [ "npm", "start" ]
+
+################
+## PRODUCTION ##
+################

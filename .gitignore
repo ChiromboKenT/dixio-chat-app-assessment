@@ -1,0 +1,52 @@
+*/node_modules
+*.vscode
+*/.vscode
+
+#Api
+chat-api/coverage
+chat-api/.nyc_output
+chat-api/dist
+chat-api/build
+
+#Client 
+client/dist
+client/build
+
+client/dist
+client/tmp
+client/out-tsc
+client/bazel-out
+
+# Node
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+client/.angular/cache
+.sass-cache/
+client/connect.lock
+client/coverage
+client/libpeerconnection.log
+testem.log
+client/typings
+
+# System files
+.DS_Store
+Thumbs.db

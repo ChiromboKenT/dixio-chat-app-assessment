@@ -1,0 +1,23 @@
+FROM node:16-alpine as development
+
+#Set up working DIR
+WORKDIR /app
+
+#Copy Package*.json files to workdir
+COPY package*.json .
+
+#Install dependencies, If in production skip installing dev dependencies
+ARG NODE_ENV
+RUN if [ "${NODE_ENV}" = "development" ]; \
+        then npm install --also=dev; \
+        else npm install --only=production; \
+        fi
+
+#Copy over rest files required for compilation
+COPY . .
+EXPOSE 4200
+
+#Execute start command
+CMD [ "npm", "start" ]
+
+#RUN ARG NODE_ENV
