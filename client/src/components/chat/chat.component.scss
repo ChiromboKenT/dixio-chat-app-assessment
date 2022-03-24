@@ -5,3 +5,9 @@
   width: 100%;
   display: flex;
 }
+
+.chat {
+  &_room {
+    height: initial;
+  }
+}
