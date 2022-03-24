@@ -1,3 +1,13 @@
 <div class="page">
   <h1 class="page_titler">Screen 2</h1>
+  <span>Chat Room</span>
+  <div class="chat_room">
+    <p *ngFor="let message of messages">{{ messages }}</p>
+    <form #form="ngForm" class="chat_button" (ngSubmit)="onSubmit()">
+      <input class="chat_input" ngModel type="text" name="message" required />
+      <button shape="round" [disabled]="!form.valid" type="submit">
+        Send Message
+      </button>
+    </form>
+  </div>
 </div>
