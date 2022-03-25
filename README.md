@@ -61,7 +61,7 @@ If the installation was successful, you should be able to run the following comm
 ## Usage Docker
 - Production settings
 ```sh
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 ```
 - development settings
 ```sh
