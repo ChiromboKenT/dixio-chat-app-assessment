@@ -68,7 +68,7 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 ```
 ### Open Application
-  - Open application on <a href="http://127.0.0.1:80/" target="_blank">http://localhost:80/</a>
+  - Open application on <a href="http://127.0.0.1:4200/" target="_blank">http://localhost:4200/</a>
 
 ## Author
 
