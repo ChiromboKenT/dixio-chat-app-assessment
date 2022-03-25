@@ -1,17 +1,22 @@
 services:
   api:
     build:
-      target: production
+      target: development
       args:
-        - NODE_ENV=production
+        - NODE_ENV=development
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
+    command: npm run start:dev
+    volumes:
+      - ./chat-api:/app
+      - /app/node_modules
 
   client:
     build:
-      target: production
+      target: development
       args:
-        - NODE_ENV=production
-    ports:
-      - 80:80
-      - 8080:8080
+        - NODE_ENV=development
+    command: npm run start
+    volumes:
+      - ./client:/app
+      - /app/node_modules

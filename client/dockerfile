@@ -8,10 +8,10 @@ COPY package*.json .
 
 #Install dependencies, If in production skip installing dev dependencies
 ARG NODE_ENV
-RUN if [ "${NODE_ENV}" = "development" ]; \
-        then npm install --also=dev; \
-        else npm install --only=production; \
-        fi
+
+RUN npm ci
+
+
 #Copy over rest files required for compilation
 COPY . .
 EXPOSE 4200
