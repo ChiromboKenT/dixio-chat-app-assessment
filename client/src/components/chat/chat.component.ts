@@ -11,6 +11,7 @@ import { ChatService, IMessage, IUSer } from 'src/services/chat/chat.service';
 export class ChatComponent implements OnInit {
   @ViewChild('form') form!: NgForm;
 
+  prevMessage?: IMessage['messageID'];
   newMessage!: Observable<string>;
   messages: IMessage[] = [];
   user: IUSer | null;
@@ -29,9 +30,13 @@ export class ChatComponent implements OnInit {
   }
   ngOnInit() {
     //TODO: refactor unsubscribe
-    // return this.chatService.getNewMessage().subscribe((message: string) => {
-    //   this.messages.push(message);
-    // });
+    return this.chatService.getNewMessage().subscribe((message: IMessage) => {
+      message.mine = message.senderId === this.user?.name;
+      if (this.prevMessage !== message.messageID) {
+        this.messages.push(message);
+      }
+      this.prevMessage = message.messageID;
+    });
   }
   onSubmit() {
     const { chat_input } = this.form.value;
@@ -42,7 +47,6 @@ export class ChatComponent implements OnInit {
     };
     if (!chat_input) return;
     this.chatService.sendMessage(message);
-    this.messages.push(message);
     this.form.reset();
   }
 }

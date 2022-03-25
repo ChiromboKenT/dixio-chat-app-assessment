@@ -21,13 +21,18 @@ export class ChatService {
   constructor(private socket: Socket) {}
 
   sendMessage(message: IMessage): void {
-    console.log('emit message');
-    console.log(JSON.stringify(message));
-    //this.socket.emit('sendMessageToServer', message);
+    this.socket.emit('sendMessageToServer', message);
   }
 
   getNewMessage(): Observable<IMessage> {
-    return this.socket.fromEvent<IMessage>('newMessage');
+    return this.socket.fromEvent<IMessage>('messageToAllClients');
+  }
+  getRegistered(): Observable<IUSer> {
+    return this.socket.fromEvent<IUSer>('userRegistered');
+  }
+
+  getRegisteredError(): Observable<string> {
+    return this.socket.fromEvent<string>('registerError');
   }
 
   getUsername(): string {
@@ -38,7 +43,6 @@ export class ChatService {
     this.user = {
       name,
     };
-    console.log(this.user);
-    //this.socket.emit('registerUser', this.user);
+    this.socket.emit('registerUser', this.user);
   }
 }

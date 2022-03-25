@@ -10,6 +10,9 @@
         name="username"
         required
       />
+      <p *ngIf="error" style="color: red">
+        {{ error || "user already registered" }}
+      </p>
       <button
         class="register_button"
         shape="round"

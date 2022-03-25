@@ -7,7 +7,7 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import internal from 'stream';
-import { ChatService } from './chat.service';
+import { ChatService, IMessage } from './chat.service';
 
 @WebSocketGateway({ cors: { origin: ['http://localhost:4200'] } })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -23,17 +23,22 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('sendMessageToServer')
-  handleMessage(client: Socket, payload: any): void {
+  handleMessage(client: Socket, payload: IMessage): void {
     this.server.emit('messageToAllClients', payload);
   }
 
   @SubscribeMessage('registerUser')
   handleRegisterUser(client: Socket, payload: { name: string }) {
     const user = {
-      id: client.id,
+      id: 22,
       name: payload.name,
     };
 
-    console.log(user);
+    if (this.chatService.isRegistered(user.name)) {
+      client.emit('registerError', 'user is already registered');
+    } else {
+      this.chatService.registerUser(user);
+      client.emit('userRegistered', user);
+    }
   }
 }

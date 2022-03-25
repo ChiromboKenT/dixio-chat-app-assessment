@@ -7,9 +7,9 @@ import { RegisterComponent } from 'src/components/register/register.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { environment } from 'src/environments/environment';
 const config: SocketIoConfig = {
-  url: 'http://localhost:3001',
+  url: `http://${environment.host}:3001`,
   options: {},
 };
 
