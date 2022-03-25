@@ -7,8 +7,11 @@ import { RegisterComponent } from 'src/components/register/register.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
+import { environment } from 'src/environments/environment';
+const config: SocketIoConfig = {
+  url: `http://${environment.host}:3001`,
+  options: {},
+};
 
 @NgModule({
   declarations: [AppComponent, ChatComponent, RegisterComponent],

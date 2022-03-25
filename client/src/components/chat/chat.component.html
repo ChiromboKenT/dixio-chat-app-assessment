@@ -1,11 +1,37 @@
 <div class="page">
-  <h1 class="page_titler">Screen 2</h1>
-  <span>Chat Room</span>
+  <h1 class="page_title">Screen 2</h1>
+  <h2 class="chat_title">Welcome to our chat room</h2>
   <div class="chat_room">
-    <p *ngFor="let message of messages">{{ messages }}</p>
-    <form #form="ngForm" class="chat_button" (ngSubmit)="onSubmit()">
-      <input class="chat_input" ngModel type="text" name="message" required />
-      <button shape="round" [disabled]="!form.valid" type="submit">
+    <div class="chat_list">
+      <p
+        *ngFor="let message of messages"
+        [ngClass]="{
+          chat_message: true,
+          chat_message_mine: message.mine,
+          chat_message_other: !message.mine
+        }"
+      >
+        <span class="chat_message_username">{{ message.senderId }}</span>
+        {{ message.messageContent }}
+        <span class="chat_message_date">{{ date() }}</span>
+      </p>
+    </div>
+    <form #form="ngForm" class="chat_form" (ngSubmit)="onSubmit()">
+      <label for="chat_input" class="chat_label">Type your message :</label>
+      <input
+        id="chat_input"
+        class="chat_input"
+        ngModel
+        type="text"
+        name="chat_input"
+        required
+      />
+      <button
+        class="chat_button"
+        shape="round"
+        [disabled]="!form.valid"
+        type="submit"
+      >
         Send Message
       </button>
     </form>
