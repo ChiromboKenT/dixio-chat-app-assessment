@@ -1,13 +1,175 @@
 .page {
-  margin: 0.5rem;
+  margin: 0.5rem auto;
   border: 1px solid black;
   padding: 2rem;
-  width: 100%;
+  width: 90%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  overflow-y: hidden;
+  & > * {
+    height: initial;
+  }
 }
 
 .chat {
   &_room {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    height: 100% !important;
+    & > * {
+      height: initial;
+    }
+  }
+  &_message {
+    padding: 1.9rem 2.2rem;
+    padding-bottom: calc(0.5em + 1rem);
+    position: relative;
+    min-width: 4rem;
+    max-width: 20rem;
+    word-wrap: normal;
+    margin: 0.3rem 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+      rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+      rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    font-size: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    &_mine {
+      background-color: rgb(145, 219, 145);
+      align-self: flex-end;
+    }
+    &_other {
+      background-color: rgb(110, 120, 204);
+      align-self: flex-start;
+      color: #c8cbce;
+    }
+    &_date {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: fit-content;
+      padding: 0.3rem;
+      font-size: 0.5em;
+    }
+    &_username {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: burlywood;
+      width: fit-content;
+      padding: 0.5rem;
+      font-size: 0.6em;
+      font-weight: 700;
+    }
+  }
+  &_list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-color: antiquewhite;
+    margin-bottom: 1.2rem;
+    width: 100%;
+    max-height: 78%;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(
+        0deg,
+        rgba(210, 221, 233, 0.85),
+        rgba(121, 187, 184, 0.85)
+      ),
+      url("../../assets/images/bgchat.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 2px;
+    }
+    &::-webkit-scrollbar-button {
+      width: 0px;
+      height: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #e1e1e1;
+      border: 0px none #105a7e;
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #ffffff;
+    }
+    &::-webkit-scrollbar-thumb:active {
+      background: #000000;
+    }
+    &::-webkit-scrollbar-track {
+      background: #a4e7b5;
+      border: 0px none #ffffff;
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-track:hover {
+      background: #666666;
+    }
+    &::-webkit-scrollbar-track:active {
+      background: #5d32d2;
+    }
+    &::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+  }
+  &_title {
+    text-decoration: underline;
     height: initial;
+    padding: 2rem 0;
+  }
+  &_form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    width: 100%;
+  }
+  &_label {
+    text-align: right;
+    margin: 0 1rem;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  &_input {
+    height: 2rem;
+    margin-right: 0.5rem;
+    outline: none;
+    background-color: #f1f2f2;
+    border: 2px solid rgb(70, 68, 68);
+    color: #898686;
+    padding: 0 1rem;
+  }
+  &_button {
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    font-style: italic;
+    font-size: 1.4em;
+    padding: 0 1rem;
+    width: 22rem;
+    background-color: #5196d3;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+      rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+      rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    border-radius: 2px;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &:disabled {
+      background-color: #c8cbce;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
   }
 }

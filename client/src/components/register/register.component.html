@@ -1,3 +1,23 @@
 <div class="page">
-  <h1 class="page_titler">Screen 1</h1>
+  <div class="register_screen">
+    <h1 class="register_screen_title">Screen 1</h1>
+    <form #form="ngForm" class="register_form" (ngSubmit)="onRegister()">
+      <label for="register"> Hello ! Please Indicate your name! </label>
+      <input
+        class="register_input"
+        ngModel
+        type="text"
+        name="username"
+        required
+      />
+      <button
+        class="register_button"
+        shape="round"
+        [disabled]="!form.valid"
+        type="submit"
+      >
+        Let's chat !
+      </button>
+    </form>
+  </div>
 </div>

@@ -4,4 +4,67 @@
   padding: 2rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: rgb(44, 44, 44);
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.register {
+  &_screen {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    & > * {
+      height: initial;
+    }
+
+    &_title {
+      font-weight: 700;
+      color: rgb(71, 70, 70);
+      text-decoration: underline;
+    }
+  }
+  &_form {
+    margin: 5rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  &_input {
+    height: 2rem;
+    margin-right: 0.5rem;
+    outline: none;
+    background-color: #f1f2f2;
+    border: 2px solid rgb(70, 68, 68);
+    color: #898686;
+    padding: 0 1rem;
+  }
+  &_button {
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    font-style: italic;
+    font-size: 1.4em;
+    padding: 0 1rem;
+    height: 2rem;
+    width: 18rem;
+    background-color: #5196d3;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+      rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+      rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    border-radius: 2px;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+    &:disabled {
+      background-color: #c8cbce;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+  }
 }
