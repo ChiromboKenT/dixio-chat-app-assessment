@@ -9,7 +9,16 @@ import { Server, Socket } from 'socket.io';
 import internal from 'stream';
 import { ChatService, IMessage } from './chat.service';
 
-@WebSocketGateway({ cors: { origin: ['http://localhost:4200'] } })
+@WebSocketGateway({
+  cors: {
+    origin: [
+      'http://localhost:4200',
+      'http://localhost:3000',
+      'http://localhost:80',
+      'http://localhost:8080',
+    ],
+  },
+})
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   constructor(private chatService: ChatService) {}
   @WebSocketServer()

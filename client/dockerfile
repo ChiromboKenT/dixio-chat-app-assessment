@@ -12,7 +12,6 @@ RUN if [ "${NODE_ENV}" = "development" ]; \
         then npm install --also=dev; \
         else npm install --only=production; \
         fi
-
 #Copy over rest files required for compilation
 COPY . .
 EXPOSE 4200
@@ -20,4 +19,29 @@ EXPOSE 4200
 #Execute start command
 CMD [ "npm", "start" ]
 
-#RUN ARG NODE_ENV
+##################
+##  Build       ##
+##################
+
+FROM node:16-alpine as build
+
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /app/build
+COPY --from=development app/ .
+
+RUN npm run build
+
+##################
+##  Production  ##
+##################
+FROM nginx:latest as production
+
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /app/build/dist/ /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+
+
